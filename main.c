@@ -1,4 +1,4 @@
-#include "SDL.h"
+#include <SDL2/SDL.h>
 #include <stdio.h>
 
 // Screen dimensions
@@ -10,11 +10,11 @@ int paddle_height = 80, paddle_width = 10, paddle_speed = 5;
 int ball_width = 10, ball_speed_x = 4, ball_speed_y = 4;
 
 // Paddle positions
-int paddle1_x = 20, paddle1_y = (SCREEN_HEIGHT - paddle_height) / 2;
-int paddle2_x = SCREEN_WIDTH - 30, paddle2_y = (SCREEN_HEIGHT - paddle_height) / 2;
+int paddle1_x = 20, paddle2_x = SCREEN_WIDTH - 30;
 
 // Ball position
-int ball_x = SCREEN_WIDTH / 2, ball_y = SCREEN_HEIGHT / 2;
+int ball_x, ball_y;
+int paddle1_y, paddle2_y;
 
 int main(int argc, char* argv[]) {
     // Initialize SDL
@@ -22,6 +22,12 @@ int main(int argc, char* argv[]) {
         printf("SDL could not initialize! SDL_Error: %s\n", SDL_GetError());
         return 1;
     }
+
+    // Initialize positions
+    paddle1_y = (SCREEN_HEIGHT - paddle_height) / 2;
+    paddle2_y = (SCREEN_HEIGHT - paddle_height) / 2;
+    ball_x = SCREEN_WIDTH / 2;
+    ball_y = SCREEN_HEIGHT / 2;
 
     // Create a window
     SDL_Window* window = SDL_CreateWindow("Pong", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, SCREEN_WIDTH, SCREEN_HEIGHT, SDL_WINDOW_SHOWN);

@@ -5,16 +5,29 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(Windows) Launch",
-            "type": "cppvsdbg",
+            "name": "Debug Pong",
+            "type": "cppdbg",
             "request": "launch",
-            "program": "Pong game/main.c",
+            "program": "C:/Users/Nicholas/OneDrive/Documents/Pong game/pong.exe", // Path to your compiled executable
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${cwd}",
+            "cwd": "C:/Users/Nicholas/OneDrive/Documents/Pong game",  // Full path to the working directory
             "environment": [],
-            "console": "externalTerminal"
+            "externalConsole": true, // Set to true if you want to see the output in an external terminal
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build and Run SDL2 Pong", // Build task from tasks.json
+            "miDebuggerPath": "C:/MinGW/bin/gdb.exe",  // Adjust path to your gdb
+            "miDebuggerArgs": "-q",
+            "launchCompleteCommand": "exec-run",
+            "targetArchitecture": "x64"
         }
-
     ]
 }
+    
